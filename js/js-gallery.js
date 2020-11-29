@@ -46,7 +46,6 @@ function onGalleryClick(event) {
     refs.lightboxImage.setAttribute("src", largeImageURL);
     refs.lightboxImage.setAttribute("alt", imgAlt);
     refs.lightboxImage.setAttribute("data-index", imgInd);
-    console.log(imgRef.dataset);
   }
 }
 

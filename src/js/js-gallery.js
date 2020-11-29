@@ -25,14 +25,9 @@ galleryArray.map((item, i) => {
   refs.gallery.append(li);
 });
 
-//refs.gallery.append(...getImgRef);
-
-//console.log(getImgRef);
-
 refs.gallery.addEventListener("click", onGalleryClick);
 refs.btnCloseModal.addEventListener("click", closeModal);
 refs.modal.addEventListener("click", onModalClickClose);
-//refs.lightboxContent.addEventListener("click", onClickModal);
 window.addEventListener("keydown", onPressLeft);
 window.addEventListener("keydown", onPressRight);
 
@@ -46,9 +41,11 @@ function onGalleryClick(event) {
     const imgRef = event.target;
     const largeImageURL = imgRef.dataset.source;
     const imgAlt = imgRef.alt;
+    const imgInd = imgRef.dataset.index;
     refs.lightbox.classList.add("is-open");
     refs.lightboxImage.setAttribute("src", largeImageURL);
     refs.lightboxImage.setAttribute("alt", imgAlt);
+    refs.lightboxImage.setAttribute("data-index", imgInd);
     console.log(imgRef.dataset);
   }
 }
@@ -80,8 +77,7 @@ function setImgModAttr(step, index) {
 
 function onPressLeft(event) {
   if (event.code === "ArrowLeft") {
-    const index = refs.lightboxImage.dataset.index;
-    console.log(refs.lightboxImage.dataset.index);
+    const index = Number(refs.lightboxImage.dataset.index);
     if (index === 0) return;
     setImgModAttr(-1, index);
   }
@@ -94,8 +90,3 @@ function onPressRight(event) {
     setImgModAttr(1, index);
   }
 }
-
-console.log(galleryArray[1].original);
-// function onClickModal (step, index) {
-//   if (){}
-// }

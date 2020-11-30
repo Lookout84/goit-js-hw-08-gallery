@@ -138,3 +138,35 @@ body {
 .lightbox__button:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+div.slider-arrow-left,
+div.slider-arrow-right {
+  width: 50px;
+  height: 40px;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.6;
+  z-index: 4;
+}
+
+div.slider-arrow-left {
+  left: 20px;
+  top: 40%;
+  display: block;
+  background: url("../images/arrow-left.png") no-repeat;
+}
+
+div.slider-arrow-right {
+  right: 20px;
+  top: 40%;
+  display: block;
+  background: url("../images/arrow-right.png") no-repeat;
+}
+
+div.slider-arrow-left:hover {
+  opacity: 1.0;
+}
+
+div.slider-arrow-right:hover {
+  opacity: 1.0;
+}

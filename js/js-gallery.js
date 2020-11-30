@@ -7,6 +7,8 @@ const refs = {
   modal: document.querySelector(".lightbox__overlay"),
   lightboxContent: document.querySelector(".lightbox__content"),
   lightboxImage: document.querySelector(".lightbox__image"),
+  arrowLeft: document.querySelector(".slider-arrow-left"),
+  arrowRight: document.querySelector(".slider-arrow-right"),
 };
 galleryArray.map((item, i) => {
   let img = document.createElement("img");
@@ -29,6 +31,8 @@ refs.gallery.addEventListener("click", onGalleryClick);
 refs.btnCloseModal.addEventListener("click", closeModal);
 refs.modal.addEventListener("click", onModalClickClose);
 refs.lightboxImage.addEventListener("click", onMouseClickRotate);
+refs.arrowLeft.addEventListener("click", onPressArrowLeft);
+refs.arrowRight.addEventListener("click", onPressArrowRight);
 
 function onGalleryClick(event) {
   event.preventDefault();
@@ -98,6 +102,22 @@ function onMouseClickRotate(event) {
       setImgModAttr(0, 0);
       return;
     }
+    setImgModAttr(1, index);
+  }
+}
+
+function onPressArrowLeft(event) {
+  if (event.target === event.currentTarget) {
+    const index = Number(refs.lightboxImage.dataset.index);
+    if (index === 0) return;
+    setImgModAttr(-1, index);
+  }
+}
+
+function onPressArrowRight(event) {
+  if (event.target === event.currentTarget) {
+    const index = Number(refs.lightboxImage.dataset.index);
+    if (index === galleryArray.length - 1) return;
     setImgModAttr(1, index);
   }
 }

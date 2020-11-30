@@ -28,29 +28,30 @@ galleryArray.map((item, i) => {
 refs.gallery.addEventListener("click", onGalleryClick);
 refs.btnCloseModal.addEventListener("click", closeModal);
 refs.modal.addEventListener("click", onModalClickClose);
-window.addEventListener("keydown", onPressLeft);
-window.addEventListener("keydown", onPressRight);
+refs.lightboxImage.addEventListener("click", onMouseClickRotate);
 
 function onGalleryClick(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  if (event.target.nodeName === "IMG") {
-    window.addEventListener("keydown", onPressEsc);
-    const imgRef = event.target;
-    const largeImageURL = imgRef.dataset.source;
-    const imgAlt = imgRef.alt;
-    const imgInd = imgRef.dataset.index;
-    refs.lightbox.classList.add("is-open");
-    refs.lightboxImage.setAttribute("src", largeImageURL);
-    refs.lightboxImage.setAttribute("alt", imgAlt);
-    refs.lightboxImage.setAttribute("data-index", imgInd);
-  }
+  window.addEventListener("keydown", onPressEsc);
+  window.addEventListener("keydown", onPressLeft);
+  window.addEventListener("keydown", onPressRight);
+  const imgRef = event.target;
+  const largeImageURL = imgRef.dataset.source;
+  const imgAlt = imgRef.alt;
+  const imgInd = imgRef.dataset.index;
+  refs.lightbox.classList.add("is-open");
+  refs.lightboxImage.setAttribute("src", largeImageURL);
+  refs.lightboxImage.setAttribute("alt", imgAlt);
+  refs.lightboxImage.setAttribute("data-index", imgInd);
 }
 
 function closeModal() {
   window.removeEventListener("keydown", onPressEsc);
+  window.removeEventListener("keydown", onPressLeft);
+  window.removeEventListener("keydown", onPressRight);
   refs.lightbox.classList.remove("is-open");
   refs.lightboxImage.src = "";
   refs.lightboxImage.alt = "";
@@ -86,6 +87,17 @@ function onPressRight(event) {
   if (event.code === "ArrowRight") {
     const index = Number(refs.lightboxImage.dataset.index);
     if (index === galleryArray.length - 1) return;
+    setImgModAttr(1, index);
+  }
+}
+
+function onMouseClickRotate(event) {
+  if (event.target === event.currentTarget) {
+    const index = Number(refs.lightboxImage.dataset.index);
+    if (index === galleryArray.length - 1) {
+      setImgModAttr(0, 0);
+      return;
+    }
     setImgModAttr(1, index);
   }
 }

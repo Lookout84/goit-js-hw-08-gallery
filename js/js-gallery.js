@@ -10,6 +10,7 @@ const refs = {
   arrowLeft: document.querySelector(".slider-arrow-left"),
   arrowRight: document.querySelector(".slider-arrow-right"),
 };
+
 galleryArray.map((item, i) => {
   let img = document.createElement("img");
   img.classList.add("gallery__image");

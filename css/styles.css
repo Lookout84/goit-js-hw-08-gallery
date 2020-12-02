@@ -151,14 +151,14 @@ div.slider-arrow-right {
 
 div.slider-arrow-left {
   left: 20px;
-  top: 40%;
+  top: 50%;
   display: block;
   background: url("../images/arrow-left.png") no-repeat;
 }
 
 div.slider-arrow-right {
   right: 20px;
-  top: 40%;
+  top: 50%;
   display: block;
   background: url("../images/arrow-right.png") no-repeat;
 }
